@@ -40,7 +40,7 @@
     "prepare": "npm run build",
     "start": "npm i && npm cd .replit-serve && node index.js",
     "clean": "rm -rf dist",
-    "build": "rm src/grammar/parser.js src/grammar/parser.terms.js && lezer-generator src/grammar/lezer.grammar -o src/grammar/parser.js && rollup -c",
+    "build": "rm -rf src/grammar/parser.js src/grammar/parser.terms.js && lezer-generator src/grammar/lezer.grammar -o src/grammar/parser.js && rollup -c",
     "unpub": "npm unpublish ${npm_package_name}@${npm_package_version}",
     "pub": "git commit -am 'pre-publish' --allow-empty && npm publish --access public",
     "local:deploy": "npm run build && rsync -arvhP --filter '+ package.json' --filter '+ dist/' --filter '+ dist/**' --filter '- **'  ./ ../lezer-editor/node_modules/${npm_package_name}/"
