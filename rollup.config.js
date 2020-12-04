@@ -1,6 +1,7 @@
 import nodeResolve from "@rollup/plugin-node-resolve";
 import copy from "rollup-plugin-copy";
 import typescript from 'rollup-plugin-typescript2';
+import commonjs from 'rollup-plugin-commonjs';
 
 export default [
 
@@ -38,5 +39,6 @@ export default [
     plugins: [
       nodeResolve(),
       typescript(),
+      commonjs()
     ]
   }]

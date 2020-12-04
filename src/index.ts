@@ -21,6 +21,7 @@ export class ParserAdapterImpl implements ParserAdapter {
             }
         } else if (context.mode == 'PARSE') {
             const tree = parser.parse(input, {top: context.grammarTag});
+
             return {
                 traverse(visitor: ASTNodeVisitor) : void{
                     tree.traverse({
