@@ -1,4 +1,4 @@
-import { ASTIterator, ASTIterators, ASTNodeImpl, ASTNodeVisitor, Context, OPTION_JSON_MAPPING, OPTION_ROOT_TAGS, ParserAdapter, ParseResult } from '@lezer-editor/lezer-editor-common';
+import { ASTIterator, ASTIteratorImpl, ASTIterators, ASTNode, ASTNodeImpl, ASTNodeVisitor, Context, HydratedASTNode, OPTION_JSON_MAPPING, OPTION_ROOT_TAGS, ParserAdapter, ParseResult } from '@lezer-editor/lezer-editor-common';
 import { parser } from './grammar/parser';
 
 export class ParserAdapterImpl implements ParserAdapter {
@@ -22,19 +22,19 @@ export class ParserAdapterImpl implements ParserAdapter {
         } else if (context.mode == 'PARSE') {
             const tree = parser.parse(input, {top: context.grammarTag});
 
-            return {
-                traverse(visitor: ASTNodeVisitor) : void {
+            return new class extends ASTIteratorImpl<ASTNode> {
+                traverse(visitor: ASTNodeVisitor<ASTNode>) : void {
                     tree.iterate({
                         enter(node, start, end) {
-                            visitor.enter(new ASTNodeImpl(node.name, start, end, node.isSkipped, node.isError));
+                            visitor.enter(new ASTNodeImpl({name: node.name, start, end, skip: node.isSkipped, error: node.isError}));
                         },
 
                         leave(node, start, end) {
-                            visitor.leave(new ASTNodeImpl(node.name, start, end, node.isSkipped, node.isError));
+                            visitor.leave(new ASTNodeImpl({name: node.name, start, end, skip: node.isSkipped, error: node.isError}));
                         }
                     });
                 }
-            } as ASTIterator;
+            };
         }
     }
     
