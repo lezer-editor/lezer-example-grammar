@@ -24,7 +24,7 @@ export class ParserAdapterImpl implements ParserAdapter {
 
             return {
                 traverse(visitor: ASTNodeVisitor) : void{
-                    tree.traverse({
+                    tree.iterate({
                         enter(node, start, end) {
                             visitor.enter(new ASTNodeImpl(node.name, node.start, node.end, null, node.isSkipped, node.isError));
                         },
