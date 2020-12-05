@@ -23,14 +23,14 @@ export class ParserAdapterImpl implements ParserAdapter {
             const tree = parser.parse(input, {top: context.grammarTag});
 
             return {
-                traverse(visitor: ASTNodeVisitor) : void{
+                traverse(visitor: ASTNodeVisitor) : void {
                     tree.iterate({
                         enter(node, start, end) {
-                            visitor.enter(new ASTNodeImpl(node.name, start, end, null, node.isSkipped, node.isError));
+                            visitor.enter(new ASTNodeImpl(node.name, start, end, node.isSkipped, node.isError));
                         },
 
                         leave(node, start, end) {
-                            visitor.leave(new ASTNodeImpl(node.name, start, end, null, node.isSkipped, node.isError));
+                            visitor.leave(new ASTNodeImpl(node.name, start, end, node.isSkipped, node.isError));
                         }
                     });
                 }
