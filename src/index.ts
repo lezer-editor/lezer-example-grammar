@@ -1,7 +1,7 @@
 import { ASTIterator, ASTIterators, ASTNodeImpl, ASTNodeVisitor, Context, OPTION_JSON_MAPPING, OPTION_ROOT_TAGS, ParserAdapter, ParseResult } from '@lezer-editor/lezer-editor-common';
 import { parser } from './grammar/parser';
 
-export default class ParserAdapterImpl implements ParserAdapter {
+export class ParserAdapterImpl implements ParserAdapter {
     getOption(key: string) {
         switch (key) {
             case OPTION_JSON_MAPPING:

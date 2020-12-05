@@ -30,10 +30,8 @@ export default [
   {
     input: ["./src/index.ts"],
     output: [{
-      format: "cjs",
-      file: "./dist/index.cjs"
-    }, {
       format: "es",
+      exports: "auto",
       file: "./dist/index.es.js"
     }],
     plugins: [
