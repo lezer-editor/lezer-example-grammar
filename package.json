@@ -38,7 +38,7 @@
   },
   "scripts": {
     "prepare": "npm run build",
-    "start": "npm i && npm cd .replit-serve && node index.js",
+    "start": "npm i && cd .replit-serve && node index.js",
     "clean": "rm -rf dist",
     "build": "rm -rf src/grammar/parser.js src/grammar/parser.terms.js && lezer-generator src/grammar/lezer.grammar -o src/grammar/parser.js && rollup -c",
     "unpub": "npm unpublish ${npm_package_name}@${npm_package_version}",
