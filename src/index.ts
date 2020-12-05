@@ -26,11 +26,11 @@ export class ParserAdapterImpl implements ParserAdapter {
                 traverse(visitor: ASTNodeVisitor) : void{
                     tree.iterate({
                         enter(node, start, end) {
-                            visitor.enter(new ASTNodeImpl(node.name, node.start, node.end, null, node.isSkipped, node.isError));
+                            visitor.enter(new ASTNodeImpl(node.name, start, end, null, node.isSkipped, node.isError));
                         },
 
                         leave(node, start, end) {
-                            visitor.leave(new ASTNodeImpl(node.name, node.start, node.end, null, node.isSkipped, node.isError));
+                            visitor.leave(new ASTNodeImpl(node.name, start, end, null, node.isSkipped, node.isError));
                         }
                     });
                 }
